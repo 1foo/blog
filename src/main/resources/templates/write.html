@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/editormd.min.css">
 
 
-
 </head>
 <body>
 
@@ -23,22 +22,38 @@
             .col-md-6
         </div>
         <div class="col-md-9">
-            <div id="test-editor">
-                <textarea style="display:none;">### 关于 Editor.md
-
-            **Editor.md** 是一款开源的、可嵌入的 Markdown 在线编辑器（组件），基于 CodeMirror、jQuery 和 Marked 构建。
-                </textarea>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    var editor = editormd("test-editor", {
-                        width: "100%",
-                        height: "600px",
-                        path: "/js/lib/",
-                        watch: "false"
+            <form action="" class="form-horizontal">
+                <div class="form-group" style="width: 100%">
+                    <label  class="col-sm-1 control-label left">标题</label>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="请输入标题">
+                    </div>
+                </div>
+                <div id="body">
+                    <textarea style="display:none;" name="body"> 输入正文</textarea>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        var editor = editormd("body", {
+                            width: "100%",
+                            height: "400px",
+                            path: "/js/lib/",
+                            watch: false,
+                        });
                     });
-                });
-            </script>
+                </script>
+                <div class="form-group" style="width: 100%">
+                    <label class="col-md-1 control-label left">标签</label>
+                    <div class="col-md-11 ">
+                        <input type="text" class="form-control" name="tag" placeholder="输入标签以 , 隔开">
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success"
+                        style="float: right;margin-bottom: 30px ;margin-right: 30px">发布
+                </button>
+            </form>
+
         </div>
     </div>
 </div>
