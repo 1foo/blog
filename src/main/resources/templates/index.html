@@ -7,6 +7,7 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/blog.css">
 
 
 </head>
@@ -14,20 +15,27 @@
 
 <div th:insert="navbar :: nav"></div>
 
-<div class="container bs-docs-container">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-8">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-6">
             <!--文章列表-->
             <div th:each="article : ${articles}">
                 <div class="col-xs-12">
 
-                    <h3 th:text="${article.title}"></h3>
-                    <p>
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true" th:text="${article.gmtCreate}"></span>
+                    <h3>
+                        <a th:text="${article.title}" th:href="@{'/article?id='+${article.id}}"></a>
+                    </h3>
+                    <p class="text-desc">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"
+                              th:text="${#dates.format(article.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+
 
                         <span class="glyphicon glyphicon-user" aria-hidden="true" th:text="${article.creator}"></span>
                         作者
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"th:text="${article.viewCount}"></span>
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"
+                              th:text="${article.viewCount}"></span>
                         浏览量
                     </p>
                     <hr>
@@ -37,11 +45,11 @@
             </div>
         </div>
 
-        <div class="col-xs-6 col-md-4"><h3>侧边栏</h3>
+        <div class="col-md-4"><h3>侧边栏</h3>
 
         </div>
     </div>
-</div>
+
 
 </body>
 </html>

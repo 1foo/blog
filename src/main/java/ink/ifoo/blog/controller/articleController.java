@@ -6,32 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @program: blog
  * @description:
  * @author: FuYu
- * @create: 2019-09-15 15:22
+ * @create: 2019-09-23 15:16
  **/
+
 @Controller
-public class indexController {
+public class articleController {
     @Autowired
     ArticleMapper articleMapper;
 
-    @GetMapping("/")
-    public  String  index(Model model){
+    @GetMapping("article")
 
-        List<Article> articles = articleMapper.selectAll();
+    public String getArticle(@RequestParam("id") String id,
+                             Model model){
 
+        Article article = articleMapper.selectByPrimaryKey(Integer.valueOf(id));
+        model.addAttribute("article",article);
 
-         model.addAttribute("articles" ,articles);
-
-        return "index";
+        return "article";
     }
-
 }
-
-
-

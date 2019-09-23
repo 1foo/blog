@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>南瓜拌米饭</title>
+    <script src="/js/jquery-3.4.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/editormd.min.js"></script>
+
+    <script src="js/lib/marked.min.js"></script>
+    <script src="js/lib/prettify.min.js"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/editormd.min.css">
+    <link rel="stylesheet" href="/css/blog.css">
+
+
+</head>
+
+<body>
+
+<div th:insert="navbar :: nav"></div>
+
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <!--文章内容-->
+    <div class="col-md-6">
+        <h3>
+            <span th:text="${article.title}"></span>
+        </h3>
+        <p class="text-desc">
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"
+                  th:text="${#dates.format(article.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
+
+            <span class="glyphicon glyphicon-user" aria-hidden="true" th:text="${article.creator}"></span>
+            作者
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"th:text="${article.viewCount}"></span>
+            浏览量
+        </p>
+        <div id="test-markdown-view" >
+
+            <textarea style="display:none;" th:text="${article.body}"></textarea>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                var testView = editormd.markdownToHTML("test-markdown-view", {
+
+                });
+            });
+        </script>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+</div>
+
+</body>
+</html>
